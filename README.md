@@ -1,4 +1,4 @@
-![signalx-small](https://cloud.githubusercontent.com/assets/2102748/18841378/88df2284-83df-11e6-9c97-8f291b3baedd.png)
+![sxs](https://cloud.githubusercontent.com/assets/2102748/18841414/a912f0bc-83df-11e6-81ca-608ac62cac47.png)
 # SignalX
 simplifying sigalr front and backend  setups
 
