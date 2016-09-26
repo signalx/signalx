@@ -73,6 +73,11 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+      <Name>SignalX.JS</Name>
+      <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
+      <Private>True</Private>
+    </ProjectReference>
     <ProjectReference Include="..\SignalX.SignalXLib\SignalX.SignalXLib.csproj">
       <Name>SignalX.SignalXLib</Name>
       <Project>{689aa72b-541c-48f8-bab9-df439b1c7108}</Project>

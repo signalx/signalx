@@ -1,4 +1,4 @@
-(function($, window, undefined) {
+﻿(function($, window, undefined) {
     var signalx = {};
     var handlers = {};
     signalx.server = false;

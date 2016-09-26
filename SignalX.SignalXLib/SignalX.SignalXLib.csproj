@@ -86,6 +86,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+      <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
+      <Name>SignalX.JS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SignalX.SignalXUI\SignalX.SignalXUI.csproj">
       <Project>{056cc502-e875-40e7-a591-881d55d88971}</Project>
       <Name>SignalX.SignalXUI</Name>

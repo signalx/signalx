@@ -59,6 +59,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+      <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
+      <Name>SignalX.JS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SignalX.SignalXLib\SignalX.SignalXLib.csproj">
       <Project>{689AA72B-541C-48F8-BAB9-DF439B1C7108}</Project>
       <Name>SignalX.SignalXLib</Name>

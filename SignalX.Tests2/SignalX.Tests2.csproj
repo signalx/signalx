@@ -59,16 +59,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SignalX.SignalXLib\SignalX.SignalXLib.csproj">
-      <Project>{689AA72B-541C-48F8-BAB9-DF439B1C7108}</Project>
-      <Name>SignalX.SignalXLib</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SignalX.SignalXUI\SignalX.SignalXUI.csproj">
-      <Project>{056cc502-e875-40e7-a591-881d55d88971}</Project>
-      <Name>SignalX.SignalXUI</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>

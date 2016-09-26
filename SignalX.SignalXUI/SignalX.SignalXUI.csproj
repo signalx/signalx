@@ -63,9 +63,6 @@
     <EmbeddedResource Include="ui\js\jquery.signalr-2.2.0.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
-    <EmbeddedResource Include="ui\js\signalx.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
     <EmbeddedResource Include="ui\css\font-awesome.css">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -113,6 +110,12 @@
     <EmbeddedResource Include="ui\fonts\glyphicons-halflings-regular.woff2">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+      <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
+      <Name>SignalX.JS</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
