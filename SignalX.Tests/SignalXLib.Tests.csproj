@@ -6,8 +6,8 @@
     <ProjectGuid>{895C5069-69E4-48C2-BEDD-7C9F7B1BF93D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SignalX.Tests</RootNamespace>
-    <AssemblyName>SignalX.Tests</AssemblyName>
+    <RootNamespace>SignalXLib.Tests</RootNamespace>
+    <AssemblyName>SignalXLib.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -59,17 +59,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+    <ProjectReference Include="..\SignalX.JS\SignalXLib.JS.csproj">
       <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
-      <Name>SignalX.JS</Name>
+      <Name>SignalXLib.JS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SignalX.SignalXLib\SignalX.SignalXLib.csproj">
+    <ProjectReference Include="..\SignalX.SignalXLib\SignalXLib.Lib.csproj">
       <Project>{689AA72B-541C-48F8-BAB9-DF439B1C7108}</Project>
-      <Name>SignalX.SignalXLib</Name>
+      <Name>SignalXLib.Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SignalX.SignalXUI\SignalX.SignalXUI.csproj">
+    <ProjectReference Include="..\SignalX.SignalXUI\SignalXLib.SignalXUI.csproj">
       <Project>{056cc502-e875-40e7-a591-881d55d88971}</Project>
-      <Name>SignalX.SignalXUI</Name>
+      <Name>SignalXLib.SignalXUI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

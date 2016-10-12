@@ -1,7 +1,7 @@
 using System;
 using System.Threading;
 
-namespace SignalX.Tests
+namespace SignalXLib.TestsNuget
 {
     public static class Reader
     {

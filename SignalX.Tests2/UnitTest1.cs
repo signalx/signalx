@@ -1,9 +1,8 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SignalX.SignalXLib;
-using SignalX.Tests;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SignalXLib.Lib;
+using System;
 
-namespace SignalX.Tests2
+namespace SignalXLib.TestsNuget
 {
     [TestClass]
     public class UnitTest1
@@ -11,13 +10,11 @@ namespace SignalX.Tests2
         [TestMethod]
         public void TestMethod1()
         {
-            using (new SignalXApp())
+            using (new SignalX("http://localhost:44111", ""))
             {
                 try
                 {
-                    SignalXLib.SignalX.SignalXServer("Sample", 
-                        message =>SignalXLib.SignalX.SendToClient("Myclient", "yooo server : " + message));
-
+                    SignalX.Server("Sample", message => SignalX.ClientPush("Myclient", "yooo server : " + message));
                     Console.WriteLine("quiting server in next 5 minute");
                     Reader.ReadLine(TimeSpan.FromMinutes(5));
                 }

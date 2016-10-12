@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("SignalXLib.JS")]
+[assembly: AssemblyTitle("ConsoleApplicationCSharp")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SignalXLib.JS")]
+[assembly: AssemblyProduct("ConsoleApplicationCSharp")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("91d39fd0-da2c-4a85-9e44-944bf943a6c2")]
+[assembly: Guid("2a43a64e-78a0-430e-8e10-93aaa25bf60e")]
 
 // Version information for an assembly consists of the following four values:
 //

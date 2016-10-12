@@ -7,8 +7,8 @@
     <ProjectGuid>{689AA72B-541C-48F8-BAB9-DF439B1C7108}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SignalX.SignalXLib</RootNamespace>
-    <AssemblyName>SignalX.SignalXLib</AssemblyName>
+    <RootNamespace>SignalXLib.Lib</RootNamespace>
+    <AssemblyName>SignalXLib.Lib</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="SignalXHub.cs" />
-    <Compile Include="SignalXApp.cs" />
+    <Compile Include="SignalX.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -86,13 +86,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+    <ProjectReference Include="..\SignalX.JS\SignalXLib.JS.csproj">
       <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
-      <Name>SignalX.JS</Name>
+      <Name>SignalXLib.JS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SignalX.SignalXUI\SignalX.SignalXUI.csproj">
+    <ProjectReference Include="..\SignalX.SignalXUI\SignalXLib.SignalXUI.csproj">
       <Project>{056cc502-e875-40e7-a591-881d55d88971}</Project>
-      <Name>SignalX.SignalXUI</Name>
+      <Name>SignalXLib.SignalXUI</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

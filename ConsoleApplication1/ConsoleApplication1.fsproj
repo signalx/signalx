@@ -73,18 +73,18 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
-      <Name>SignalX.JS</Name>
+    <ProjectReference Include="..\SignalX.JS\SignalXLib.JS.csproj">
+      <Name>SignalXLib.JS</Name>
       <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SignalX.SignalXLib\SignalX.SignalXLib.csproj">
-      <Name>SignalX.SignalXLib</Name>
+    <ProjectReference Include="..\SignalX.SignalXLib\SignalXLib.Lib.csproj">
+      <Name>SignalXLib.Lib</Name>
       <Project>{689aa72b-541c-48f8-bab9-df439b1c7108}</Project>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\SignalX.SignalXUI\SignalX.SignalXUI.csproj">
-      <Name>SignalX.SignalXUI</Name>
+    <ProjectReference Include="..\SignalX.SignalXUI\SignalXLib.SignalXUI.csproj">
+      <Name>SignalXLib.SignalXUI</Name>
       <Project>{056cc502-e875-40e7-a591-881d55d88971}</Project>
       <Private>True</Private>
     </ProjectReference>

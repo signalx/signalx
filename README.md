@@ -6,8 +6,8 @@ No more worrying about setup, cases, etc, just simple javascript to .NET lambda 
 
 Backend :-
 
-    let server=new SignalXApp()
-    SignalX.SignalXServer("Sample",fun message -> SignalX.SendToClient("Myclient",message ))
+    let server=new SignalX("http://localhost:44111","/ui")
+    SignalX.Server("Sample",fun message -> SignalX.ClientPush("Myclient",message ))
     
 FrontEnd:-
     
@@ -16,5 +16,5 @@ FrontEnd:-
     };
 
     signalx.ready(function (server) {
-       server.sample("RR 1 Hi, its sam");
+       server.sample("Hello, its sam");
     });

@@ -4,7 +4,7 @@ using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
 using Owin;
 
-namespace SignalX.SignalXLib
+namespace SignalXLib.Lib
 {
     public class Startup
     {
@@ -14,7 +14,7 @@ namespace SignalX.SignalXLib
             var config = new HubConfiguration {EnableDetailedErrors = true, EnableJSONP = true};
             app.MapSignalR(config);
 
-            var fileSystem = new PhysicalFileSystem(AppDomain.CurrentDomain.BaseDirectory + "/ui");
+            var fileSystem = new PhysicalFileSystem(SignalX.UiFolder);
             var options = new FileServerOptions
             {
                 EnableDirectoryBrowsing = true,

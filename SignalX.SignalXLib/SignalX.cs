@@ -1,19 +1,38 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Text;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
 using Microsoft.Owin.Hosting;
 
-namespace SignalX.SignalXLib
+namespace SignalXLib.Lib
 {
-    public class SignalX
+    public class SignalX : IDisposable
     {
-        internal static ConcurrentDictionary<string, Action<object>> _signalXServers =
-            new ConcurrentDictionary<string, Action<object>>();
+        internal static string UiFolder { set; get; }
+        internal static string BaseUiDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
+        public static string UiDirectory => BaseUiDirectory + UiFolder;
 
-        public static void SignalXServer(string name, Action<object> server)
+        public SignalX(string url = "http://localhost:44111",string uiFolder="/ui",string baseUIDirectory= null)
+        {
+            UiFolder = uiFolder;
+            BaseUiDirectory = baseUIDirectory ?? BaseUiDirectory;
+
+            if (string.IsNullOrEmpty(url))
+                throw new ArgumentNullException(nameof(url));
+            MyApp = WebApp.Start(url);
+        }
+
+        public IDisposable MyApp { get; set; }
+
+        public void Dispose()
+        {
+            MyApp.Dispose();
+        }
+
+        internal static ConcurrentDictionary<string, Action<object>> _signalXServers = new ConcurrentDictionary<string, Action<object>>();
+
+        public static void Server(string name, Action<object> server)
         {
             if (_signalXServers.ContainsKey(name))
             {
@@ -23,7 +42,7 @@ namespace SignalX.SignalXLib
             var camelCased = Char.ToLowerInvariant(name[0]) + name.Substring(1);
             if (!_signalXServers.ContainsKey(camelCased))
             {
-                added =  _signalXServers.TryAdd(camelCased, server) ;//&&added;
+                added = _signalXServers.TryAdd(camelCased, server);//&&added;
             }
 
             var unCamelCased = Char.ToUpperInvariant(name[0]) + name.Substring(1);
@@ -38,28 +57,11 @@ namespace SignalX.SignalXLib
             //}
         }
 
-        public static void SendToClient(string name, object data)
+        public static void ClientPush(string name, object data)
         {
             var hubContext = GlobalHost.DependencyResolver.Resolve<IConnectionManager>().GetHubContext<SignalXHub>();
 
             hubContext.Clients.All.broadcastMessage(name, data);
-        }
-       
-    }
-
-    public class SignalXApp : IDisposable
-    {
-        public SignalXApp(string url = "http://localhost:44111")
-        {
-            MyApp = WebApp.Start(url);
-            Console.WriteLine("Server running on {0}", url);
-        }
-
-        public IDisposable MyApp { get; set; }
-
-        public void Dispose()
-        {
-            MyApp.Dispose();
         }
     }
 }

@@ -7,8 +7,8 @@
     <ProjectGuid>{056CC502-E875-40E7-A591-881D55D88971}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SignalX.SignalXUI</RootNamespace>
-    <AssemblyName>SignalX.SignalXUI</AssemblyName>
+    <RootNamespace>SignalXLib.SignalXUI</RootNamespace>
+    <AssemblyName>SignalXLib.SignalXUI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -112,9 +112,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SignalX.JS\SignalX.JS.csproj">
+    <ProjectReference Include="..\SignalX.JS\SignalXLib.JS.csproj">
       <Project>{91d39fd0-da2c-4a85-9e44-944bf943a6c2}</Project>
-      <Name>SignalX.JS</Name>
+      <Name>SignalXLib.JS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
