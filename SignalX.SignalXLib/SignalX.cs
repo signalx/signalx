@@ -30,9 +30,9 @@ namespace SignalXLib.Lib
             MyApp.Dispose();
         }
 
-        internal static ConcurrentDictionary<string, Action<object>> _signalXServers = new ConcurrentDictionary<string, Action<object>>();
+        internal static ConcurrentDictionary<string, Action<object, object, string>> _signalXServers = new ConcurrentDictionary<string, Action<object, object, string>>();
 
-        public static void Server(string name, Action<object> server)
+        public static void Server(string name, Action<object, object,string> server)
         {
             if (_signalXServers.ContainsKey(name))
             {
@@ -55,6 +55,15 @@ namespace SignalXLib.Lib
             //{
             //    throw new Exception("unable to create signalx server");
             //}
+        }
+        public static void Server(string name, Action<object, object> server)
+        {
+            Server(name, (message,semder, replyTo) =>server(message, semder));
+        }
+
+        public static void Server(string name, Action<object> server)
+        {
+            Server(name, (message, semder, replyTo) => server(message));
         }
 
         public static void ClientPush(string name, object data)

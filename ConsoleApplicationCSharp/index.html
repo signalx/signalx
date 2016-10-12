@@ -2,7 +2,9 @@
 <html>
 <body>
 <input id="message" type="text"/>
-<button id="send">Send Message To Server</button>
+<button id="send1">Send Message To Server 1</button>
+<button id="send2">Send Message To Server 2</button>
+    <button id="send3">Send Message To Server 3</button>
     <button id="clear">Clear Console</button>
 <div id="myconsole">
 
@@ -20,14 +22,27 @@
     $("#clear").on("click", function () {
         $("#myconsole").html("--cleared--");
     });
-    $("#send").on("click", function () {
+    $("#send1").on("click", function () {
         var message = $("#message").val();
-        writeToMyConsole("Sending '" + message + "' message to server on click ... ");
-        signalx.server.sample(message);
+        writeToMyConsole("Sending 1 '" + message + "' message to server on click ... ");
+        signalx.server.sample2(message);
     });
 
+    $("#send2").on("click", function () {
+        var message = $("#message").val();
+        writeToMyConsole("Sending 2 '" + message + "' message to server on click ... ");
+        signalx.server.sample2(message,"delibarate name");
+    });
 
+    $("#send3").on("click", function () {
+        var message = $("#message").val();
+        writeToMyConsole("Sending 3 '" + message + "' message to server on click ... ");
+        signalx.server.sample2(message,"my name","replyto");
+    });
 
+    signalx.client.replyto = function (message) {
+        writeToMyConsole("Got Message From Server on the REPLY-TO handler : " + message);
+    };
     signalx.client.myclient = function(message) {
         writeToMyConsole("Got Message From Server : " + message);
     };
