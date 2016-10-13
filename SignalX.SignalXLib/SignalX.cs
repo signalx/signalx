@@ -12,6 +12,12 @@ namespace SignalXLib.Lib
         internal static string BaseUiDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
         public static string UiDirectory => BaseUiDirectory + UiFolder;
+        internal static Action<Exception> ExceptionHandler { set; get; }
+
+        public static void OnException(Action<Exception> handler)
+        {
+            ExceptionHandler = handler;
+        }
 
         public SignalX(string url = "http://localhost:44111",string uiFolder="/ui",string baseUIDirectory= null)
         {
@@ -30,9 +36,9 @@ namespace SignalXLib.Lib
             MyApp.Dispose();
         }
 
-        internal static ConcurrentDictionary<string, Action<object, object, string>> _signalXServers = new ConcurrentDictionary<string, Action<object, object, string>>();
+        internal static ConcurrentDictionary<string, Action<object, object, string, string>> _signalXServers = new ConcurrentDictionary<string, Action<object, object, string, string>>();
 
-        public static void Server(string name, Action<object, object,string> server)
+        public static void Server(string name, Action<object, object,string, string> server)
         {
             if (_signalXServers.ContainsKey(name))
             {
@@ -56,17 +62,50 @@ namespace SignalXLib.Lib
             //    throw new Exception("unable to create signalx server");
             //}
         }
+
+        public class SignalXRequest
+        {
+            public SignalXRequest(string replyTo, object sender, string messageId, object message)
+            {
+                ReplyTo = replyTo;
+                Sender = sender;
+                MessageId = messageId;
+                Message = message;
+            }
+
+            public string ReplyTo { get; }
+            public object Sender { get; }
+            public string MessageId { get; }
+            public object Message { get; }
+            public void Respond(object response)
+            {
+             if(!string.IsNullOrEmpty(ReplyTo))
+                    SignalX.RespondTo(ReplyTo, response);
+            }
+            public void RespondTo(string replyTo,object response)
+            {
+                if (replyTo == null) throw new ArgumentNullException(nameof(replyTo));
+                    SignalX.RespondTo(replyTo, response);
+            }
+        }
+
+     
+
+        public static void Server(string name, Action<object, object,string> server)
+        {
+            Server(name, (message, sender, replyTo, messageId) => server(message, sender, replyTo));
+        }
         public static void Server(string name, Action<object, object> server)
         {
-            Server(name, (message,semder, replyTo) =>server(message, semder));
+            Server(name, (message,sender, replyTo,messageId) =>server(message, sender));
         }
 
-        public static void Server(string name, Action<object> server)
+        public static void Server(string name, Action<SignalXRequest> server)
         {
-            Server(name, (message, semder, replyTo) => server(message));
+            Server(name, (message, sender, replyTo, messageId) => server(new SignalXRequest(replyTo, sender, messageId, message)));
         }
 
-        public static void ClientPush(string name, object data)
+        public static void RespondTo(string name, object data)
         {
             var hubContext = GlobalHost.DependencyResolver.Resolve<IConnectionManager>().GetHubContext<SignalXHub>();
 

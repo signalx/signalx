@@ -15,7 +15,7 @@ namespace SignalXLib.Tests
             {
                 try
                 {
-                    SignalX.Server("Sample",message =>SignalX.ClientPush("Myclient", "yooo server : " + message));
+                    SignalX.Server("Sample",message =>SignalX.RespondTo("Myclient", "yooo server : " + message));
                     Console.WriteLine("quiting server in next 5 minute");
                     Reader.ReadLine(TimeSpan.FromMinutes(5));
                 }
