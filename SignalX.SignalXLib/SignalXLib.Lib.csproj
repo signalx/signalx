@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="SignalXHub.cs" />
     <Compile Include="SignalX.cs" />
+    <Compile Include="SignalXRequest.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

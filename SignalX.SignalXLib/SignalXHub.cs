@@ -33,7 +33,5 @@ namespace SignalXLib.Lib
 
             Clients.All.addMessage(methods);
         }
-
-       
     }
 }
