@@ -1,6 +1,6 @@
 {
   "name": "signalx",
-  "version": "0.0.4-pre",
+  "version": "0.0.5-pre",
   "description": "simplifying signalr setup",
   "main": "index.js",
   "scripts": {

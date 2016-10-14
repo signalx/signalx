@@ -6,16 +6,9 @@ No more worrying about setup, cases, etc, just simple javascript to .NET lambda 
 
 Backend :-
 
-    let server=new SignalX("http://localhost:44111","/ui")
-    SignalX.Server("Sample",fun message -> SignalX.ClientPush("Myclient",message ))
-	SignalX.Server("Sample2",fun message sender replyTo -> SignalX.ClientPush(replyTo,(message.ToString()+sender.ToString())))
+    let server=new SignalX()
+    SignalX.Server("Sample", fun request -> request.Respond("Hi"));
     
-FrontEnd:-
+FrontEnd :-
     
-    signalx.client.myclient = function(message) {
-       console.log(message);
-    };
-
-    signalx.ready(function (server) {
-       server.sample("Hello, its sam");
-    });
+    signalx.server.sample("Hey",function(response){ console.log(response);});
