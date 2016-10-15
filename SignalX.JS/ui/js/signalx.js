@@ -8,10 +8,10 @@
     signalx.debug = function (f) {
         signalx.debug.f = f;
     };
-    var debuging = function(o) {
+    var debuging = function (o) {
         signalx.debug.f && signalx.debug.f(o);
     };
-    signalx.waitingList = function(n,f) {
+    signalx.waitingList = function (n, f) {
         signalx.waitingList.w = signalx.waitingList.w || {};
         signalx.waitingList.w[n] = f;
     };
@@ -22,7 +22,7 @@
             description: "signalx is already included in the page"
         });
         return;
-    } else  if (window.signalx) {
+    } else if (window.signalx) {
         signalx.error.f({
             description: "signalx variable in windows context, i will override it!"
         });
@@ -31,8 +31,8 @@
     signalx.server = false;
     var hasRun = false;
     var mailBox = [];
-  
-    mailBox.run = function() {
+
+    mailBox.run = function () {
         if (signalx.server) {
             while (mailBox.length) {
                 var func = mailBox.pop();
@@ -41,9 +41,9 @@
                 } catch (e) {
                     signalx.error.f({
                         error: e,
-                        description:"Error while executing method in signalx.ready"
+                        description: "Error while executing method in signalx.ready"
                     });
-                } 
+                }
             }
         }
     };
@@ -53,11 +53,11 @@
     var toUnCamelCase = function (str) {
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
-    signalx.client = function(name, f) {
+    signalx.client = function (name, f) {
         //todo check if is function
         if (name && f) {
             //debug
-            debuging("registering handler : "+name);
+            debuging("registering handler : " + name);
             handlers[name] = f;
             var camelCase = toCamelCase(name);
             if (camelCase !== name) {
@@ -78,8 +78,8 @@
         }
     };
 
-    signalx.ready = function(f) {
-       f && mailBox.push(f);
+    signalx.ready = function (f) {
+        f && mailBox.push(f);
         mailBox.run();
         if (!hasRun) {
             hasRun = true;
@@ -89,8 +89,8 @@
             $.ajax({
                 url: "/signalr/hubs",
                 dataType: "script",
-                success: function() {
-                    $(function() {
+                success: function () {
+                    $(function () {
                         var chat = $.connection.signalXHub;
                         //debug
                         debuging("successfully loaded signalr script from /signalr/hubs ");
@@ -111,17 +111,16 @@
                         chat.client.addMessage = function (message) {
                             try {
                                 //debug
-                                debuging("successfully loaded signalx script from server : "+message);
-                            signalx.server = eval(message);
-                            mailBox.run();
+                                debuging("successfully loaded signalx script from server : " + message);
+                                signalx.server = eval(message);
+                                mailBox.run();
                             } catch (e) {
                                 signalx.error.f({
                                     error: e,
                                     description: "Error downloading script from server"
                                 });
                                 throw e;
-                            } 
-                           
+                            }
                         };
 
                         chat.client.broadcastMessage = function (owner, message) {
@@ -130,42 +129,39 @@
 
                             var own = signalx.waitingList.w[owner];
 
-                          if (!own) {
-                              debuging("Could not find any defined callback for "+owner);
-                              own = handlers[owner];
                             if (!own) {
-                                var errMsg = "Could not find specified client handler '"+owner+"' to handle the server response '"+message;
-                                signalx.error.f({
-                                    error: errMsg,
-                                    description: "No client handler registered by the name "+owner
-                                });
-                            }
+                                debuging("Could not find any defined callback for " + owner);
+                                own = handlers[owner];
+                                if (!own) {
+                                    var errMsg = "Could not find specified client handler '" + owner + "' to handle the server response '" + message;
+                                    signalx.error.f({
+                                        error: errMsg,
+                                        description: "No client handler registered by the name " + owner
+                                    });
+                                }
                             } else {
-                              delete signalx.waitingList.w[owner];
-                          }
-                          
-                            try {
+                                delete signalx.waitingList.w[owner];
+                            }
 
+                            try {
                                 if (typeof own === "object" && typeof own.resolve === "function") {
                                     own.resolve(message);
                                 } else {
                                     own && own(message);
                                 }
-
-                                
                             } catch (e) {
                                 signalx.error.f({
                                     error: e,
-                                    description: "Error while running client handler "+owner+" with the server message "+message
+                                    description: "Error while running client handler " + owner + " with the server message " + message
                                 });
-                            } 
+                            }
                         };
                         var promise = $.connection.hub.start();
                         promise.done(function () {
                             //debug
                             debuging("signalr hub started successfully. Now loading signalx script from hub");
                             chat.server.getMethods();
-                        }).fail(function(e) {
+                        }).fail(function (e) {
                             signalx.error.f({
                                 error: e,
                                 description: "Error requesting client script from server"
@@ -177,15 +173,15 @@
         }
     };
     window.signalx = signalx;
-    setTimeout(function() {
-        signalx.ready(function() {
+    setTimeout(function () {
+        signalx.ready(function () {
             for (var key in handlers) {
                 if (handlers.hasOwnProperty(key)) {
                     //debug
                     debuging("Client handlers registered : " + key);
                 }
             }
-         
+
             //debug
             debuging("signalx is all set to start reactive server - client server communications");
         });
@@ -196,6 +192,5 @@
             error: message,
             description: "Error occured on the server"
         });
-
     };
 }(window.jQuery, window));

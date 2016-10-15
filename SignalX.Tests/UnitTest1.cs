@@ -1,4 +1,5 @@
 ﻿using System;
+using Microsoft.Owin.Hosting;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SignalXLib.Lib;
 
@@ -11,11 +12,15 @@ namespace SignalXLib.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            using (new SignalX("http://localhost:44111","/ui"))
+
+            var url = "http://localhost:44111";
+
+
+            using (WebApp.Start(url))
             {
                 try
                 {
-                    SignalX.Server("Sample",message =>SignalX.RespondTo("Myclient", "yooo server : " + message));
+                    SignalX.Server("Sample", message => SignalX.RespondTo("Myclient", "yooo server : " + message));
                     Console.WriteLine("quiting server in next 5 minute");
                     Reader.ReadLine(TimeSpan.FromMinutes(5));
                 }
@@ -24,6 +29,7 @@ namespace SignalXLib.Tests
                     Console.WriteLine("session ended.");
                 }
             }
+
         }
     }
 }

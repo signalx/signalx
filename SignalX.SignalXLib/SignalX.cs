@@ -2,16 +2,16 @@
 using System.Collections.Concurrent;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Infrastructure;
-using Microsoft.Owin.Hosting;
+
 
 namespace SignalXLib.Lib
 {
     public class SignalX : IDisposable
     {
-        internal static string UiFolder { set; get; }
-        internal static string BaseUiDirectory = AppDomain.CurrentDomain.BaseDirectory;
+        internal  string UiFolder { set; get; }
+        internal  string BaseUiDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
-        public static string UiDirectory => BaseUiDirectory + UiFolder;
+        public  string UiDirectory => BaseUiDirectory + UiFolder;
         internal static Action<Exception> ExceptionHandler { set; get; }
 
         public static void OnException(Action<Exception> handler)
@@ -19,27 +19,28 @@ namespace SignalXLib.Lib
             ExceptionHandler = handler;
         }
 
-        //public SignalX(string url = "http://localhost:44111", string uiFolder = "/ui", string baseUIDirectory = null)
-        //{
-        //    UiFolder = uiFolder;
-        //    BaseUiDirectory = baseUIDirectory ?? BaseUiDirectory;
-
-        //    if (string.IsNullOrEmpty(url))
-        //        throw new ArgumentNullException(nameof(url));
-        //    MyApp = WebApp.Start(url);
-        //}
-        public SignalX(string url = "http://localhost:44111",string uiFolder="/ui",string baseUIDirectory= null)
+        public SignalX( string uiFolder, string baseUiDirectory=null)
         {
             UiFolder = uiFolder;
-            BaseUiDirectory = baseUIDirectory ?? BaseUiDirectory;
-
-            if (string.IsNullOrEmpty(url))
-                throw new ArgumentNullException(nameof(url));
-            MyApp = WebApp.Start(url);
+            BaseUiDirectory = baseUiDirectory ?? BaseUiDirectory;
+            HubConfiguration = new HubConfiguration();
         }
 
-        public IDisposable MyApp { get; set; }
+        public SignalX(HubConfiguration hubConfiguration/*= null */ 
+            , string uiFolder=null
+            , string baseUiDirectory = null
+            )
+        {
+            if (hubConfiguration == null) throw new ArgumentNullException(nameof(hubConfiguration));
+            HubConfiguration = hubConfiguration;
+            UiFolder = uiFolder;
+            BaseUiDirectory = baseUiDirectory ?? BaseUiDirectory;
+        }
 
+        public  HubConfiguration HubConfiguration { get; set; }
+
+        public IDisposable MyApp { get; set; }
+       
         public void Dispose()
         {
             MyApp.Dispose();
@@ -65,16 +66,8 @@ namespace SignalXLib.Lib
             {
                 added = _signalXServers.TryAdd(unCamelCased, server);//&&added;
             }
-
-            //if (!added)
-            //{
-            //    throw new Exception("unable to create signalx server");
-            //}
+            
         }
-
-      
-
-     
 
         public static void Server(string name, Action<object, object,string> server)
         {

@@ -6,9 +6,15 @@ No more worrying about setup, cases, etc, just simple javascript to .NET lambda 
 
 Backend :-
 
-    let server=new SignalX()
-    SignalX.Server("Sample", fun request -> request.Respond("Hi"));
-    
+    type public Startup() =
+        member x.Configuration (app:IAppBuilder) = app.UseSignalX( new SignalX("")) |> ignore
+		
+    [<EntryPoint>]
+    let main argv = 
+    let url="http://localhost:44111"
+    use server=WebApp.Start<Startup>(url)
+	SignalX.Server("Sample",fun request -> request.Respond(request.ReplyTo))	
+	
 FrontEnd :-
     
     signalx.server.sample("Hey",function(response){ console.log(response);});
