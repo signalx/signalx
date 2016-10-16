@@ -26,7 +26,7 @@ namespace SignalXLib.Lib
             HubConfiguration = new HubConfiguration();
         }
 
-        public SignalX(HubConfiguration hubConfiguration/*= null */ 
+        public SignalX(HubConfiguration hubConfiguration= null 
             , string uiFolder=null
             , string baseUiDirectory = null
             )

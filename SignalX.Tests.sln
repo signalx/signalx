@@ -21,6 +21,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D43A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplicationCSharp", "ConsoleApplicationCSharp\ConsoleApplicationCSharp.csproj", "{2A43A64E-78A0-430E-8E10-93AAA25BF60E}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LinqPad", "LinqPad", "{772E9DB3-3BF7-49A9-9717-AE7AEC8500EC}"
+	ProjectSection(SolutionItems) = preProject
+		LinqPadSamples\signalx_callback.linq = LinqPadSamples\signalx_callback.linq
+		LinqPadSamples\signalx_handler.linq = LinqPadSamples\signalx_handler.linq
+		LinqPadSamples\signalx_promise.linq = LinqPadSamples\signalx_promise.linq
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
