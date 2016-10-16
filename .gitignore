@@ -29,4 +29,4 @@ node_modules
 .vs/backender/v14/.suo
 
 report/dalek/*
-
+bower_components
