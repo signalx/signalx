@@ -43,9 +43,9 @@ FrontEnd :-
 Include scripts
 ----------------------------------------------------------------
 
-      <script src="jquery.min.js"></script>      
-      <script src="jquery.signalr.min.js"></script>
-      <script src="signalx.js"></script>
+      <script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.9.0.min.js"></script>     
+      <script src="http://ajax.aspnetcdn.com/ajax/signalr/jquery.signalr-2.2.0.js"></script>
+      <script src="https://unpkg.com/signalx@0.1.0-pre"></script>
 
 
 Report debug information
