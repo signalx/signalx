@@ -69,7 +69,7 @@ Specify callback method
      };
  
  
-Specify a promise
+Return a promise
 =========================================================
 
     var getSomethingCompletedPromise = signalx.server.sample("GetSomething");
