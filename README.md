@@ -132,7 +132,7 @@ Return a promise
 
     var getSomethingCompletedPromise = signalx.server.sample("GetSomething");
  
-    getSomethingCompletedPromise.always(function (something) {
+    getSomethingCompletedPromise.done(function (something) {
         console.log(something);
     });
  
