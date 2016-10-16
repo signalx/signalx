@@ -1,4 +1,9 @@
 ![sxs](https://cloud.githubusercontent.com/assets/2102748/18841414/a912f0bc-83df-11e6-81ca-608ac62cac47.png) 
+
+[![NuGet version](https://img.shields.io/nuget/v/Honjo.svg?style=flat-square)](https://www.nuget.org/packages/signalx)
+
+
+
 # SignalX
 Simplifying sigalr front and backend  setups
 
