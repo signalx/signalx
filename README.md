@@ -23,6 +23,12 @@ MORE INFORMATION
 
 Backend :-
 
+    open System
+    open Owin
+    open Microsoft.Owin
+    open SignalXLib.Lib
+    open Microsoft.Owin.Hosting
+	
     type public Startup() =
         member x.Configuration (app:IAppBuilder) = app.UseSignalX( new SignalX("")) |> ignore
 		
