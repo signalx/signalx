@@ -10,9 +10,14 @@ Simplifying sigalr front and backend  setups
 No more worrying about setup, cases, etc, just simple javascript to .NET lambda as a server
 
 
-Backend :-
+Backend (F#) :-
 
 	SignalX.Server("Sample",fun request -> request.Respond("response"))	
+	
+Backend (C#) :-
+
+	SignalX.Server("Sample",request => request.Respond("response"))	
+	
 	
 FrontEnd :-
     
@@ -20,11 +25,9 @@ FrontEnd :-
 
 	
 	
-Download  complete server client linqpad samples:
+Download the simple complete linqpad samples:
 
 Run linqpad as administrator to avoid getting exception such as  "Access to the path 'C:\Program Files (x86)\LINQPad5\index.html' is denied."
-
-you can download linqpad here https://www.linqpad.net/
 
 https://signalx.github.io/LinqPadSamples/signalx_callback.linq
 
@@ -32,7 +35,9 @@ https://signalx.github.io/LinqPadSamples/signalx_handler.linq
 
 https://signalx.github.io/LinqPadSamples/signalx_promise.linq
 	
-	
+
+you can download linqpad here https://www.linqpad.net/
+
 	
 	
 	
@@ -40,7 +45,7 @@ https://signalx.github.io/LinqPadSamples/signalx_promise.linq
 MORE INFORMATION
 ==================================================================
 
-Backend :-
+Backend (F#) :-
 
     open System
     open Owin
@@ -49,13 +54,36 @@ Backend :-
     open Microsoft.Owin.Hosting
 	
     type public Startup() =
-        member x.Configuration (app:IAppBuilder) = app.UseSignalX( new SignalX("")) |> ignore
+        member x.Configuration (app:IAppBuilder) = app.UseSignalX( new SignalX()) |> ignore
 		
     [<EntryPoint>]
     let main argv = 
     let url="http://localhost:44111"
     use server=WebApp.Start<Startup>(url)
 	SignalX.Server("Sample",fun request -> request.Respond(request.ReplyTo))	
+	
+	
+
+Backend (C#) :-
+
+    public class Startup
+	{
+		public void Configuration(IAppBuilder app)
+		{
+			app.UseSignalX(new SignalX());
+		}
+	}
+	internal class Program
+	{
+		private static void Main(string[] args)
+		{
+			var url = "http://localhost:44111";
+			using (WebApp.Start<Startup>(url))
+			{
+			   SignalX.Server("Sample", (request) => request.Respond(request.ReplyTo));
+			}
+		}
+	}
 	
 FrontEnd :-
 	
