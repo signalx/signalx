@@ -7,7 +7,7 @@ No more worrying about setup, cases, etc, just simple javascript to .NET lambda 
 
 Backend :-
 
-	SignalX.Server("Sample",fun request -> request.Respond(request.ReplyTo))	
+	SignalX.Server("Sample",fun request -> request.Respond("response"))	
 	
 FrontEnd :-
     
