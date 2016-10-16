@@ -54,12 +54,12 @@ Do things only when connection is ready
        server.sample("GetSomething",function(something){ console.log(something);});
     });
  
-Do things from anywhere
+Do things from anywhere, specify a callback
 =========================================================
 
     signalx.server.sample("GetSomething",function(something){ console.log(something);});
  
-Specify callback method
+Register handler
 =========================================================
 
     signalx.server.sample("GetSomething","getSomethingCompleted");
