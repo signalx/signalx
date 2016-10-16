@@ -1,7 +1,7 @@
 {
   "name": "signalx",
   "version": "0.1.1-pre",
-  "description": "simplifying signalr setup",
+  "description": "Real time client server communication made easy",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

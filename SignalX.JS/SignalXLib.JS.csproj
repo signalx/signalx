@@ -45,6 +45,7 @@
   <ItemGroup>
     <None Include=".gitignore" />
     <None Include=".npmignore" />
+    <None Include="bower.json" />
     <None Include="package.json" />
   </ItemGroup>
   <ItemGroup>
