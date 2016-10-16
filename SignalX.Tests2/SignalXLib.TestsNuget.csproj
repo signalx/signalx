@@ -72,7 +72,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SignalXLib.Lib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SignalX.0.0.4.1-pre\lib\SignalXLib.Lib.dll</HintPath>
+      <HintPath>..\packages\SignalX.0.1.0-pre\lib\SignalXLib.Lib.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -91,6 +91,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Reader.cs" />
+    <Compile Include="Startup.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

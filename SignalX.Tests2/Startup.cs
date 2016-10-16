@@ -1,7 +1,7 @@
 using Owin;
 using SignalXLib.Lib;
 
-namespace ConsoleApplicationCSharp
+namespace SignalXLib.TestsNuget
 {
     public class Startup
     {
