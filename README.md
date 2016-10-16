@@ -20,7 +20,11 @@ FrontEnd :-
 
 	
 	
-Download  complete full linqpad samples:
+Download  complete server client linqpad samples:
+
+Run linqpad as administrator to avoid getting exception such as  "Access to the path 'C:\Program Files (x86)\LINQPad5\index.html' is denied."
+
+you can download linqpad here https://www.linqpad.net/
 
 https://signalx.github.io/LinqPadSamples/signalx_callback.linq
 
