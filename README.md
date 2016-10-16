@@ -18,6 +18,21 @@ FrontEnd :-
     
     signalx.server.sample("Hey",function(response){ console.log(response);});
 
+	
+	
+Download  complete full linqpad samples:
+
+https://signalx.github.io/LinqPadSamples/signalx_callback.linq
+
+https://signalx.github.io/LinqPadSamples/signalx_handler.linq
+
+https://signalx.github.io/LinqPadSamples/signalx_promise.linq
+	
+	
+	
+	
+	
+	
 MORE INFORMATION
 ==================================================================
 
