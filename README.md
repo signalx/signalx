@@ -37,9 +37,9 @@ MORE INFORMATION
 Include scripts
 ----------------------------------------------------------------
 
-<script src="jquery.min.js"></script>
-<script src="jquery.signalr.min.js"></script>
-<script src="signalx.js"></script>
+      <script src="jquery.min.js"></script>      
+      <script src="jquery.signalr.min.js">
+      </script><script src="signalx.js"></script>
 
 
 Report debug information
