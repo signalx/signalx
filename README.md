@@ -28,11 +28,6 @@ Backend :-
 	SignalX.Server("Sample",fun request -> request.Respond(request.ReplyTo))	
 	
 FrontEnd :-
-    
-    signalx.server.sample("Hey",function(response){ console.log(response);});	
-	
-MORE INFORMATION
-==================================================================
 	
 Include scripts
 ----------------------------------------------------------------
@@ -45,41 +40,41 @@ Include scripts
 Report debug information
 =========================================================
 
- signalx.debug(function (o) { console.log(o); });
- signalx.error(function (o) { console.log(o); });
+      signalx.debug(function (o) { console.log(o); });
+      signalx.error(function (o) { console.log(o); });
  
 Do things only when connection is ready
 =========================================================
  
- signalx.ready(function (server) {
-    console.log("signalx is ready");
- });
+    signalx.ready(function (server) {
+      console.log("signalx is ready");
+    });
  
- signalx.ready(function (server) {
-    server.sample("GetSomething",function(something){ console.log(something);});
- });
+    signalx.ready(function (server) {
+       server.sample("GetSomething",function(something){ console.log(something);});
+    });
  
 Do things from anywhere
 =========================================================
 
- signalx.server.sample("GetSomething",function(something){ console.log(something);});
+    signalx.server.sample("GetSomething",function(something){ console.log(something);});
  
 Specify callback method
 =========================================================
 
- signalx.server.sample("GetSomething","getSomethingCompleted");
+    signalx.server.sample("GetSomething","getSomethingCompleted");
  
- signalx.client.getSomethingCompleted = function (something) {
+    signalx.client.getSomethingCompleted = function (something) {
         console.log(something);
-    };
+     };
  
  
 Specify a promise
 =========================================================
 
- var getSomethingCompletedPromise = signalx.server.sample("GetSomething");
+    var getSomethingCompletedPromise = signalx.server.sample("GetSomething");
  
- getSomethingCompletedPromise.always(function (something) {
+    getSomethingCompletedPromise.always(function (something) {
         console.log(something);
     });
  
