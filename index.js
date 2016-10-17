@@ -88,7 +88,7 @@
         }
 
 
-        debuging("Server on client called  by " + name + " from sender " + sender + " with message id " + mId + " and return to " + rt + " message : " + message);
+        debuging("Server on client called  by " + name + " from sender " + sender );
 
 
         var respondTo = function (na, mes) {
@@ -112,7 +112,7 @@
             Sender: sender,
             MessageId: mId
         };
-
+    debuging("Sending Message : " + JSON.stringify(request));
         try {
            f(request);
         } catch (e) {
@@ -207,7 +207,6 @@
         isReady && mailBox.run();
         if (!hasRun) {
             hasRun = true;
-
             //debug
             debuging("loading signalr script at /signalr/hubs ");
             $.ajax({
@@ -218,20 +217,7 @@
                         var chat = $.connection.signalXHub;
                         //debug
                         debuging("successfully loaded signalr script from /signalr/hubs ");
-                        for (var key in signalx.client) {
-                            if (signalx.client.hasOwnProperty(key)) {
-                                handlers[key] = signalx.client[key];
-                                var camelCase = toCamelCase(key);
-                                if (camelCase !== key) {
-                                    handlers[camelCase] = signalx.client[key];
-                                }
-
-                                var unCamelCase = toUnCamelCase(key);
-                                if (unCamelCase !== key) {
-                                    handlers[unCamelCase] = signalx.client[key];
-                                }
-                            }
-                        }
+                        
                         chat.client.addMessage = function (message) {
                             try {
                                 //debug
@@ -267,12 +253,31 @@
                             });
                         });
                     });
-                }
-            });
+                },
+				
+            }).always(function(){
+			          for (var key in signalx.client) {
+                            if (signalx.client.hasOwnProperty(key)) {
+                                handlers[key] = signalx.client[key];
+                                var camelCase = toCamelCase(key);
+                                if (camelCase !== key) {
+                                    handlers[camelCase] = signalx.client[key];
+                                }
+
+                                var unCamelCase = toUnCamelCase(key);
+                                if (unCamelCase !== key) {
+                                    handlers[unCamelCase] = signalx.client[key];
+                                }
+                            }
+                        }
+			   mailBox.run();
+			   isReady = true;
+			});					
+			
         }
     };
     window.signalx = signalx;
-    signalx.ready(function () {
+    signalx.ready(function () {	
         for (var key in handlers) {
             if (handlers.hasOwnProperty(key)) {
                 //debug
