@@ -46,7 +46,7 @@ you can download linqpad here https://www.linqpad.net/
 	
 only javascript jsfiddle:
 
-https://jsfiddle.net/sammie/dazes8j3/
+https://jsfiddle.net/contactsamie/uhht0x7j/
 	
 	
 	

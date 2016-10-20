@@ -1,5 +1,6 @@
 ﻿(function ($, window, undefined) {
     var signalx = {};
+	var context={};
     signalx.error = function (f) {
         signalx.error.f = f || signalx.error.f;
     };
@@ -34,7 +35,7 @@
    var clientReceiver=function (owner, message) {
         //debug
         debuging("successfully received server message meant for  " + owner + " handler . Message is : " + message);
-
+        context.loadClients();
         var own = signalx.waitingList.w[owner];
 
         if (!own) {
@@ -162,6 +163,7 @@
     var mailBox = [];
 
     mailBox.run = function () {
+	     context.loadClients();
         if (signalx.server) {
             while (mailBox.length) {
                 var func = mailBox.pop();
@@ -201,7 +203,32 @@
             throw errMsg;
         }
     };
-    var isReady = false;
+   
+   context.loadClients=function(){
+	    for (var key in signalx.client) {
+                            if (signalx.client.hasOwnProperty(key)) {
+							if(!handlers[key]){
+								 handlers[key] = signalx.client[key];
+								}
+                               
+                                var camelCase = toCamelCase(key);
+                                if (camelCase !== key) {
+								if(!handlers[camelCase]){
+									handlers[camelCase] = signalx.client[key];}
+                                    
+                                }
+
+                                var unCamelCase = toUnCamelCase(key);
+                                if (unCamelCase !== key) {
+								if(!handlers[unCamelCase]){
+									 handlers[unCamelCase] = signalx.client[key];
+									}
+                                   
+                                }
+                            }
+                        }};
+   
+   var isReady = false;
     signalx.ready = function (f) {
         f && mailBox.push(f);
         isReady && mailBox.run();
@@ -256,20 +283,7 @@
                 },
 				
             }).always(function(){
-			          for (var key in signalx.client) {
-                            if (signalx.client.hasOwnProperty(key)) {
-                                handlers[key] = signalx.client[key];
-                                var camelCase = toCamelCase(key);
-                                if (camelCase !== key) {
-                                    handlers[camelCase] = signalx.client[key];
-                                }
-
-                                var unCamelCase = toUnCamelCase(key);
-                                if (unCamelCase !== key) {
-                                    handlers[unCamelCase] = signalx.client[key];
-                                }
-                            }
-                        }
+			        context.loadClients();
 			   mailBox.run();
 			   isReady = true;
 			});					
