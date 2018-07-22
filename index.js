@@ -1,4 +1,4 @@
-﻿(function ($, window, undefined) {
+(function ($, window, undefined) {
     var signalx = {};
 	var context={};
     signalx.error = function (f) {
@@ -282,8 +282,9 @@
                     });
                 },
 				
-            }).always(function(){
-			        context.loadClients();
+            }).fail(function () {
+                //todo log error
+			   context.loadClients();
 			   mailBox.run();
 			   isReady = true;
 			});					
