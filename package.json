@@ -1,6 +1,5 @@
 {
   "name": "signalx",
-  "version": "0.1.8-pre",
   "description": "Real time client server communication made easy",
   "main": "index.js",
   "scripts": {
@@ -15,5 +14,6 @@
   "bugs": {
     "url": "https://github.com/signalx/signalx/issues"
   },
-  "homepage": "https://github.com/signalx/signalx#readme"
+  "homepage": "https://github.com/signalx/signalx#readme",
+  "version": "0.1.9-pre"
 }
