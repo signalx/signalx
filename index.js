@@ -41,7 +41,7 @@
     var haservers = false;
     var clientReceiver = function (owner, message) {
         //debug
-        debuging("successfully received server message meant for  " + owner + " handler . Message is : " + message);
+        debuging("successfully received server message meant for  " + owner + " handler . Message is : " + JSON.stringify(message));
         context.loadClients();
         var own = signalx.waitingList.w[owner];
 
