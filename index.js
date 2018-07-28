@@ -1,4 +1,4 @@
-﻿(function ($, window, undefined) {
+(function ($, window, undefined) {
     var signalx = {};
     var context = {};
     signalx.logConnections = false;
@@ -327,5 +327,8 @@
             error: message,
             description: "Error occured on the server"
         });
+    };
+    signalx.getConnectionId=function(){
+        return $.connection.hub.id;
     };
 }(window.jQuery, window));
