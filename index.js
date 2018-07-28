@@ -1,4 +1,4 @@
-(function ($, window, undefined) {
+﻿(function ($, window, undefined) {
     var signalx = {};
     var context = {};
     signalx.logConnections = false;
@@ -17,7 +17,9 @@
         signalx.debug.f = f;
     };
     var debuging = function (o) {
-        signalx.debug.f && signalx.debug.f(o);
+         if(signalx.debug.f){
+             signalx.debug.f(o);
+           }
     };
     signalx.waitingList = function (n, f) {
         if (n && f) {
@@ -32,7 +34,8 @@
             description: "signalx is already included in the page"
         });
         return;
-    } else if (window.signalx) {
+    }
+     if (window.signalx) {
         signalx.error.f({
             description: "signalx variable in windows context, i will override it!"
         });
@@ -63,7 +66,9 @@
             if (typeof own === "object" && typeof own.resolve === "function") {
                 own.resolve(message);
             } else {
-                own && own(message);
+                if(own){
+                    own(message);
+                }
             }
         } catch (e) {
             signalx.error.f({
@@ -73,7 +78,6 @@
         }
     };
     var chatserversend = function (name, message, retTo, sender, mId, f) {
-
         var deferred = $.Deferred();
         window.signalxidgen = window.signalxidgen || function () {
             return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
@@ -96,9 +100,7 @@
             rt = messageId;
         }
 
-
         debuging("Server on client called  by " + name + " from sender " + sender);
-
 
         var respondTo = function (na, mes) {
             clientReceiver(na, mes);
@@ -131,7 +133,6 @@
             });
         }
 
-
         if (retTo) {
             return messageId;
         } else {
@@ -145,7 +146,6 @@
         return str.charAt(0).toUpperCase() + str.slice(1);
     };
     signalx.server = function (n, f) {
-
         if (n && f) {
             haservers = true;
             var nname = toCamelCase(n);
@@ -213,7 +213,7 @@
     };
 
     context.loadClients = function () {
-        for (var key in signalx.client) {
+        for(var key in signalx.client) {
             if (signalx.client.hasOwnProperty(key)) {
                 if (!handlers[key]) {
                     handlers[key] = signalx.client[key];
@@ -224,7 +224,6 @@
                     if (!handlers[camelCase]) {
                         handlers[camelCase] = signalx.client[key];
                     }
-
                 }
 
                 var unCamelCase = toUnCamelCase(key);
@@ -232,7 +231,6 @@
                     if (!handlers[unCamelCase]) {
                         handlers[unCamelCase] = signalx.client[key];
                     }
-
                 }
             }
         }
@@ -240,8 +238,12 @@
 
     var isReady = false;
     signalx.ready = function (f) {
-        f && mailBox.push(f);
-        isReady && mailBox.run();
+        if(f){
+            mailBox.push(f);
+        }
+        if(isReady){
+            mailBox.run();
+        }
         if (!hasRun) {
             hasRun = true;
             //debug
@@ -299,15 +301,13 @@
                             });
                         });
                     });
-                },
-
+                }
             }).fail(function () {
                 //todo log error
                 context.loadClients();
                 mailBox.run();
                 isReady = true;
             });
-
         }
     };
     window.signalx = signalx;
