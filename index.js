@@ -267,12 +267,12 @@
                             join: function (grpName, f) {
                                 signalx.groupNotifications = [];
                                 signalx.groupNotifications.push(f);
-                                chat.client.joinGroup(grpName);
+                                chat.server.joinGroup(grpName);
                             },
                             leave: function (grpName, f) {
                                 signalx.groupNotifications = [];
                                 signalx.groupNotifications.push(f);
-                                chat.client.leaveGroup(grpName);
+                                chat.server.leaveGroup(grpName);
                             }
                         };
                         chat.client.addMessage = function (message) {
